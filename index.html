@@ -15,36 +15,50 @@
     <!-- <meta http-equiv="Content-Type" content="text/html" ;charset="UTF-8" /> -->
   </head>
   <body>
-    <div id="map" class="map"></div>
-    <img
-      src="http://localhost:8082/geoserver/CH1/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&LAYER=CH1:camhoangdc_1"
-      alt=""
-    /><br />
-    <img
-      src="http://localhost:8082/geoserver/CH1/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&LAYER=CH1:camhoanggt_1"
-      alt=""
-    /><br />
-    <img
-      src="http://localhost:8082/geoserver/CH1/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&LAYER=CH1:camhoangtt_1"
-      alt=""
-    />
-    <input type="checkbox" id="vung" checked /><label for="checkbox"
-      >Hiện trạng sử dụng đất Cẩm Hoàng</label
-    ><br />
-    <input type="checkbox" id="diem" checked /><label for="checkbox"
-      >Điểm ủy ban Cẩm Hoàng</label
-    ><br />
-    <input type="checkbox" id="duong" checked /><label for="checkbox"
-      >Đường giao thông Cẩm Hoàng</label
-    ><br />
-    <div id="info"></div>
+    <div class="container">
+      <div id="map" class="map"></div>
+      <div class="info-container">
+        <h1>Chú Giải</h1>
+        <form class="search-form">
+          <input
+            class="form-control"
+            type="text"
+            size="30"
+            onkeyup="showResult(this.value)"
+            placeholder="Tìm kiếm loại đất ..."
+          />
+          <div id="livesearch"></div>
+        </form>
+        <img
+          src="http://localhost:8082/geoserver/CH1/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&LAYER=CH1:camhoangdc_1"
+          alt=""
+        /><br />
+        <img
+          src="http://localhost:8082/geoserver/CH1/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&LAYER=CH1:camhoanggt_1"
+          alt=""
+        /><br />
+        <img
+          src="http://localhost:8082/geoserver/CH1/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&LAYER=CH1:camhoangtt_1"
+          alt=""
+        />
+        <input type="checkbox" id="vung" checked /><label for="checkbox"
+          >Hiện trạng sử dụng đất Cẩm Hoàng</label
+        ><br />
+        <input type="checkbox" id="diem" checked /><label for="checkbox"
+          >Điểm ủy ban Cẩm Hoàng</label
+        ><br />
+        <input type="checkbox" id="duong" checked /><label for="checkbox"
+          >Đường giao thông Cẩm Hoàng</label
+        ><br />
+      </div>
+    </div>
 
     <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>
-    <input type="text" id="search-input" onkeyup="showResult(this.value)" placeholder="Tìm kiếm loại đất...">
-    <div id="livesearch" class="live_search"></div>
+   
+
     <script src="js/main.js"></script>
   </body>
 </html>

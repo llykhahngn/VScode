@@ -1,83 +1,77 @@
-.map {
-  height: 400px;
-  width: 100%;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
-/* Định dạng bản đồ */
-#map {
-  width: 70%;
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+ 
+}
+
+.map, .info-container {
+  width: 50%;
   height: 600px;
-  float: left;
-  border: 2px solid #ff66b2;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  width: 80%;
+  border: 2px solid #ff5722;
+  margin-right: 20px;
+  padding: 15px;
+}
+
+.info-container {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 2px solid #4a90e2;
 }
 
 /* Định dạng cho các checkbox lớp */
+.info-container input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+
+
 #layer-controls {
-  width: 25%;
-  float: right;
-  padding: 10px;
-  background-color: #ffe6f2;
-  border: 2px solid #ff66b2;
+  width: 300px;
+  padding: 15px;
+  background-color: #ffeb3b;
+  border: 2px solid #333;
   border-radius: 8px;
   font-size: 14px;
-  color: #b3005e;
+  color: #d32f2f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #layer-controls h3 {
-  color: #ff66b2;
+  color: #ff5722;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 #layer-controls label {
-  display: flex;
-  align-items: center;
+  display: block;
   margin: 5px 0;
-  color: #b3005e;
+  color: #d32f2f;
 }
 
 #layer-controls input[type="checkbox"] {
   margin-right: 8px;
 }
 
-/* Cửa sổ thông tin (popup) */
-#popup-content {
-  background-color: #ffe6f2;
-  border: 2px solid #ff66b2;
-  padding: 10px;
-  font-size: 13px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-  color: #b3005e;
-}
-
-#popup-content table {
+#search-input {
   width: 100%;
   border-collapse: collapse;
-}
-
-#popup-content td {
-  padding: 4px;
-  border-bottom: 1px solid #ffd6e7;
-}
-
-#popup-content td:first-child {
-  font-weight: bold;
-  color: #ff66b2;
-}
-
-/* Thông tin bên dưới lớp checkbox */
-#info {
-  margin-top: 20px;
-  background-color: #ffe6f2;
-  padding: 10px;
-  font-size: 13px;
-  color: #b3005e;
-  border: 2px solid #ff66b2;
-  border-radius: 8px;
-  max-height: 250px;
-  overflow-y: auto;
+  margin-top: 10px;
 }
 /* Bài 5: Tạo "popup" hiển thị thuộc tính dưới dạng bảng */
 .ol-popup {
@@ -122,18 +116,15 @@
 }
 
 /* Nút đóng popup */
-.ol-popup-closer:after {
-  content: "✖";
-}
 .ol-popup-closer {
   position: absolute;
   top: 5px;
   right: 5px;
   text-decoration: none;
   font-weight: bold;
-  color: rgb(255, 26, 26); /* Đổi màu dấu "x" thành màu đen */
+  color: black; /* Đổi màu dấu "x" thành màu đen */
   font-size: 18px; /* Tăng kích thước cho dấu "x" */
-  background: rgb(253, 178, 219); /* Không có background */
+  background: rgb(231, 176, 176); /* Không có background */
   border: none; /* Loại bỏ viền */
   cursor: pointer;
   width: 25px;
@@ -142,6 +133,14 @@
   line-height: 25px;
   border-radius: 50%;
   transition: color 0.3s;
+}
+/* Nút đóng popup */
+.ol-popup-closer:after {
+  content: "✖";
+}
+
+.ol-popup-closer:hover {
+  color: red; /* Đổi màu dấu "x" thành đỏ khi hover */
 }
 
 /* Tạo bảng trong popup */
@@ -177,37 +176,69 @@
 .ol-popup tr:hover {
   background-color: #f1f1f1;
 }
-/* Định dạng thanh tìm kiếm */
-#search-input {
-  margin-top: 20px;
-  left: 20px; /* Cách mép trái 20px */
-  width: 200px; /* Chiều rộng của thanh tìm kiếm */
-  padding: 8px;
-  border: 1px solid #ff99cc;
-  border-radius: 5px;
-  outline: none;
-  background-color: #fff0f5;
-  color: #660033;
-  z-index: 1000;
+
+
+
+/* Style the information container */
+.chugiai {
+  border: 2px solid #4a90e2;
+  padding: 10px;
+  margin: 20px;
+  width: 80%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#search-input::placeholder {
-  color: #99004d;
-}
-
-/* Kết quả tìm kiếm */
-#livesearch {
-  margin-top: 5px;
-  left: 20px;
-  background-color: #f9e9f1;
-  border: 1px solid #ff99cc;
+  background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 500px;
-  max-height: 200px;
-  overflow-y: auto;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  color: #d20d69;
 }
+
+
+
+/* Style the popup */
+.ol-popup {
+  border: 2px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General styling for images */
+.chugiai img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Style the checkboxes and labels */
+.chugiai input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.chugiai label {
+  margin-right: 20px;
+}
+
+/* Định dạng cho phần tìm kiếm */
+.search-form {
+  margin: 20px auto; /* Căn giữa */
+  text-align: center; /* Căn giữa nội dung */
+}
+
+/* Phong cách cho thanh tìm kiếm */
+.search-form input[type="text"] {
+  padding: 10px;
+  width: 90%; /* Chiều rộng ô tìm kiếm */
+  height: 20px;
+  border: 2px solid #10b9b4;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out; /* Hiệu ứng chuyển đổi */
+}
+
+/* Hiệu ứng khi nhấn vào thanh tìm kiếm */
+.search-form input[type="text"]:focus {
+  border-color: #1d624b; /* Đổi màu viền */
+  background-color: #e8f5e9; /* Đổi màu nền */
+  box-shadow: 0 0 5px rgba(29, 98, 75, 0.5); /* Hiệu ứng ánh sáng xung quanh */
+  transform: scale(1.05); /* Tăng nhẹ kích thước */
+}
+
+

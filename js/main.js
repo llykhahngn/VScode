@@ -131,7 +131,7 @@ $("#document").ready(function () {
       $.ajax({
         type: "POST",
         url: url,
-        contentType: "application/json; charset=utf8",
+        contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (n) {
           var content = "<table>";
@@ -139,11 +139,11 @@ $("#document").ready(function () {
             var feature = n.features[i];
             var featureAttr = feature.properties;
             content +=
-              "</td></tr><tr><td> Loại đất: " +
+              "<tr><td>Loại Đất:" +
               featureAttr["loaidat"] +
-              "</td></tr><tr><td> Diện tích: " +
+              "</td><td> Diện Tích:" +
               featureAttr["dientich"] +
-              "<td></tr> ";
+              "</td></tr>";
           }
           content += "</table>";
           // ------------
